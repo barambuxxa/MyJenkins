@@ -14,7 +14,7 @@ stages {
             steps {
                 // Скачиваем код из Git
                 git branch: 'main',
-                url: 'https://github.com/ВАШ_USERNAME/ВАШ_REPO.git'  // ЗАМЕНИТЕ на ваш репозиторий
+                url: 'https://github.com/barambuxxa/MyJenkins'  // ЗАМЕНИТЕ на ваш репозиторий
 
                 // Проверяем окружение
                 sh '''
