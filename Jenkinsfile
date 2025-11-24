@@ -55,6 +55,23 @@ stages {
                 }
             }
         }
+// Этап 4: Деплой в Kubernetes
+        stage('Deploy to Kubernetes') {
+            steps {
+                script {
+                    echo "Деплоим в Kubernetes..."
+                    // Обновляем Helm chart с новой версией образа
+                    sh """
+                        helm upgrade --install my-php-app-${BUILD_NUMBER} ./helm-chart \
+                            --namespace default \
+                            --set image.tag=${IMAGE_TAG} \
+                            --set replicaCount=2 \
+                            --atomic --timeout 5m
+                    """
+                    echo "Деплой завершен!"
+                }
+            }
+        }
 		
 	}
 }
