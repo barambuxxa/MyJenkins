@@ -2,8 +2,8 @@ pipeline {
     agent { label 'slave' }
 
     environment {
-        DOCKER_REGISTRY = 'gumidu'
-        DOCKER_IMAGE_NAME = 'php-app-gurenich'
+        DOCKER_REGISTRY = 'gumidu'                      //Наш пользователь
+        DOCKER_IMAGE_NAME = 'php-app-gurenich'          //Название нашего приложения на DockerHub
         DOCKER_CREDENTIALS_ID = 'docker-hub-credentials' // ID из настроек Jenkins
         IMAGE_TAG = "${env.BUILD_NUMBER}"  // Версия = номер сборки
     }
@@ -14,7 +14,7 @@ stages {
             steps {
                 // Скачиваем код из Git
                 git branch: 'main',
-                url: 'https://github.com/barambuxxa/MyJenkins'  // ЗАМЕНИТЕ на ваш репозиторий
+                url: 'https://github.com/barambuxxa/MyJenkins'  // адрес нашего repo на GitHub
 
                 // Проверяем окружение
                 sh '''
@@ -28,5 +28,17 @@ stages {
                 '''
             }
         }
+
+// Этап 2: Сборка Docker образа
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    echo "Собираем Docker образ..."
+                    // Собираем образ с тегом = номеру сборки
+                    dockerImage = docker.build("${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${IMAGE_TAG}")
+                }
+            }
+        }
+		
 	}
 }
