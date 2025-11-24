@@ -38,6 +38,7 @@ stages {
                     dockerImage = docker.build("${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${IMAGE_TAG}")
                 }
             }
+		}
 
 // Этап 3: Пуш образа в Docker Hub
         stage('Push to Docker Hub') {
@@ -56,5 +57,4 @@ stages {
         }
 		
 	}
-}
 }
