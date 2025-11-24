@@ -38,7 +38,23 @@ stages {
                     dockerImage = docker.build("${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${IMAGE_TAG}")
                 }
             }
+
+// Этап 3: Пуш образа в Docker Hub
+        stage('Push to Docker Hub') {
+            steps {
+                script {
+                    echo "Загружаем образ в Docker Hub..."
+                    // Логинимся и пушим
+                    docker.withRegistry('', "${DOCKER_CREDENTIALS_ID}") {
+                        dockerImage.push()
+                        // Также пушим как latest
+                        dockerImage.push('latest')
+                    }
+                    echo "Образ успешно загружен: ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${IMAGE_TAG}"
+                }
+            }
         }
 		
 	}
+}
 }
