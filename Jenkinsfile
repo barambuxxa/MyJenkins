@@ -66,7 +66,7 @@ stages {
                             --namespace default \
                             --set image.repository=${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME} \
                             --set replicaCount=2 \
-                            --timeout 5m
+                            --timeout 5m \
                             --wait
                     """
                     echo "Деплой завершен!"
