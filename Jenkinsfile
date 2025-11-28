@@ -73,6 +73,19 @@ stages {
                 }
             }
         }
+
+// Этап 5: Проверка деплоя
+        stage('Verify Deployment') {
+            steps {
+                script {
+                    echo "Проверяем деплой..."
+                    sh """
+                        kubectl get pods -l app=my-php-app-${BUILD_NUMBER}
+                        kubectl get svc -l app=my-php-app-${BUILD_NUMBER}
+                    """
+                }
+            }
+        }
 		
 	}
 }
