@@ -80,8 +80,8 @@ stages {
                 script {
                     echo "Проверяем деплой..."
                     sh """
-                        kubectl get pods -l app=my-php-app-${BUILD_NUMBER}
-                        kubectl get svc -l app=my-php-app-${BUILD_NUMBER}
+                        kubectl get pods -l project=my-php-app-${BUILD_NUMBER}
+                        kubectl get svc -l project=my-php-app-${BUILD_NUMBER}
                     """
                 }
             }
