@@ -65,7 +65,7 @@ stages {
                         helm upgrade --install my-php-app-${BUILD_NUMBER} ./helm-chart \
                             --namespace default \
                             --set image.repository=${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME} \
-                            --set replicaCount=2 \
+                            --set replicaCount=10 \
                             --timeout 5m \
                             --wait
                     """
