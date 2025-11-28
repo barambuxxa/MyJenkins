@@ -21,7 +21,7 @@ $hostname = gethostname() ?: 'Unknown';
 </head>
 <body>
     <h1>Hello from PHP!</h1>
-    <p>This is a simple test application owner Andrey Gurenich</p>
+    <p>This is a simple test application, owned by Andrey Gurenich, deployed using a webhook.</p>
 
     <div class="info">
         <h3>Server Information:</h3>
